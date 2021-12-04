@@ -5,39 +5,32 @@ namespace REC_80
 {
     class Program
     {
-        private static int[,] RandomUniqueMatrix(int n, int m)
+        private static int[] RandomUniqueMatrix(int[] Arr )
         {
-            int[,] ARR = new int[n, m];
-            Random rnd = new Random();
-            List<int> list = Enumerable.Range(1, n * m).OrderBy(x => rnd.Next()).ToList();
-            for (int i = 0; i < n; i++)
+            int[] UniqueRandomArr = new int[Arr.GetLength(0)];
+            Random Rnd = new Random();
+            List<int> list = Enumerable.Range(1, UniqueRandomArr.GetLength(0)).OrderBy(Num => Rnd.Next()).ToList();
+            for (int i = 0; i < UniqueRandomArr.GetLength(0); i++)
             {
-                for (int j = 0; j < m; j++)
-                {
-                    ARR[i, j] = list[i * n + j];
-                }
+                UniqueRandomArr[i] = list[i];
             }
-            return ARR;
+            return UniqueRandomArr;
         }
-        static void PrintMatrix(int[,] m)
+        static void PrintMatrix(int[] Arr)
         {
-            for (int i = 0; i < m.GetLength(0); i++)
+            for (int i = 0; i < Arr.GetLength(0); i++)
             {
-                for (int j = 0; j < m.GetLength(1); j++)
-                {
-                    Console.Write(m[i, j] + "\t");
-                }
-                Console.WriteLine();
+                    Console.Write(Arr[i] + "\t");
             }
+            Console.WriteLine();
         }
         static void Main(string[] args)
         {
-            Console.Write("Введите количество строк матрицы: ");
-            var Row = int.Parse(Console.ReadLine());
-            Console.Write("Введите количество столбцов матрицы: ");
-            var Column = int.Parse(Console.ReadLine());
-            var ARR = RandomUniqueMatrix(Row, Column);
-            PrintMatrix(ARR);
+            Console.Write("Введите количество элементов матрицы: ");
+            int ArrLength = int.Parse(Console.ReadLine());
+            int[] Arr = new int[ArrLength];
+            Arr = RandomUniqueMatrix(Arr);
+            PrintMatrix(Arr);
             Console.ReadKey();
         }
     }
